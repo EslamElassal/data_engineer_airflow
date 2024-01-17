@@ -57,7 +57,7 @@ class LoadDimensionOperator(BaseOperator):
     def _build_transformation(self):
         delete_transformation = ''
         if self.insert_mode == 'delete-load':
-            delete_transformation = f'delete from {self.table} where true;'
+            delete_transformation = f'truncate table  {self.table} ;'
         load_transformation = f"""
             insert into {self.table}
             {self.sql}""".strip()

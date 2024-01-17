@@ -93,7 +93,7 @@ class StageToRedshiftOperator(BaseOperator):
     def _build_transformation(self, s3_path, login, password):
         delete_transformation = ''
         if self.insert_mode == 'delete-load':
-            delete_transformation = f'delete from {self.table} where true;'
+            delete_transformation = f'truncate table {self.table};'
         load_transformation = (
             StageToRedshiftOperator.sql.format(
                 table=self.table,
